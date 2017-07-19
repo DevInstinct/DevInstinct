@@ -1,16 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DevInstinct.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace DevInstinct.AspNetCore.Mvc.Filters
 {
-    // https://jonhilton.net/2016/05/23/3-ways-to-keep-your-asp-net-mvc-controllers-thin/
+    // http://www.jerriepelser.com/blog/validation-response-aspnet-core-webapi/
     public class ValidateModelStateAttribute : ActionFilterAttribute
     {
-        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if (!filterContext.ModelState.IsValid)
+            if (!context.ModelState.IsValid)
             {
-                filterContext.Result = new BadRequestObjectResult(filterContext.ModelState);
+                context.Result = new ModelStateValidationFailedResult(context.ModelState);
             }
         }
     }
