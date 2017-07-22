@@ -3,6 +3,7 @@ using System.Linq;
 
 namespace DevInstinct.AspNetCore.Mvc.ModelBinding
 {
+    // http://www.jerriepelser.com/blog/validation-response-aspnet-core-webapi/
     public class ModelStateValidationError : ModelValidationError
     {
         public ModelStateValidationError(ModelStateDictionary modelState)

@@ -5,6 +5,7 @@ using System;
 
 namespace DevInstinct.AspNetCore.Mvc.Filters
 {
+    // https://weblog.west-wind.com/posts/2016/oct/16/error-handling-and-exceptionfilter-dependency-injection-for-aspnet-core-apis
     public class ApiExceptionFilter : ExceptionFilterAttribute
     {
         public override void OnException(ExceptionContext context)
@@ -13,7 +14,7 @@ namespace DevInstinct.AspNetCore.Mvc.Filters
             if (context.Exception is ApplicationErrorException)
             {
                 apiError = ((ApplicationErrorException)context.Exception)?.Error;
-                context.HttpContext.Response.StatusCode = (context.Exception as ApiException)?.StatusCode ?? StatusCodes.Status400BadRequest;
+                context.HttpContext.Response.StatusCode = (context.Exception as ApiException)?.StatusCode ?? ApiException.DefaultStatusCode;
                 context.Exception = null;
             }
             else if (context.Exception is UnauthorizedAccessException)
