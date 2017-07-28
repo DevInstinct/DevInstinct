@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -23,12 +24,34 @@ namespace DevInstinct
                 missingAssemblyFiles
                     .Select(file =>
                     {
-                        try { return Assembly.LoadFile(file); }
-                        catch { return null; }
+                        try
+                        {
+                            var assembly = Assembly.LoadFrom(file);
+                            //var dependencies = assembly.GetReferencedAssemblies();
+                            //foreach (var dependency in dependencies)
+                            //{
+                            //    LoadDependencies(dependency);
+                            //}
+                            return assembly;
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine(ex.Message);
+                            return null;
+                        }
                     })
                     .Where(assembly => assembly != null).ToList();
 
             return missingAssemblies.ToArray();
+        }
+
+        public static void LoadDependencies(AssemblyName assemblyName)
+        {
+            if (AppDomain.CurrentDomain.GetAssemblies().All(a => a.GetName() != assemblyName))
+            {
+                Debug.WriteLine(assemblyName.Name);
+                Assembly.Load(assemblyName);
+            }
         }
     }
 }
