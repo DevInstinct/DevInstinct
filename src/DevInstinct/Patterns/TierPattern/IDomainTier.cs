@@ -1,6 +1,6 @@
 ﻿namespace DevInstinct.Patterns.TierPattern
 {
-    public interface IBusinessTier : ITier
+    public interface IDomainTier : ITier
     {
     }
 }

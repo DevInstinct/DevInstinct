@@ -2,7 +2,7 @@
 
 namespace DevInstinct.MediatR.Queries.Business
 {
-    public class BusinessQuery<TResponse> : Query<TResponse>, IBusinessTier
+    public class BusinessQuery<TResponse> : Query<TResponse>, IDomainTier
     {
     }
 }

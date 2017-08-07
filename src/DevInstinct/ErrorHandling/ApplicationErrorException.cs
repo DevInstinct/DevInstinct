@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DevInstinct
+namespace DevInstinct.ErrorHandling
 {
     public class ApplicationErrorException : ApplicationException
     {

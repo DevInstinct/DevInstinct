@@ -1,14 +1,14 @@
-﻿namespace DevInstinct
+﻿namespace DevInstinct.ErrorHandling
 {
     public class ApplicationError
     {
-        public ApplicationError(string id, string message)
+        public ApplicationError(string errorCode, string message)
         {
-            Id = id;
+            ErrorCode = errorCode;
             Message = message;
         }
 
-        public string Id { get; set; }
+        public string ErrorCode { get; set; }
 
         public string Message { get; set; }
 

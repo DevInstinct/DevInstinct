@@ -2,11 +2,11 @@
 
 namespace DevInstinct.MediatR.Commands.Business
 {
-    public class BusinessCommand : Command, IBusinessTier
+    public class BusinessCommand : Command, IDomainTier
     {
     }
 
-    public class BusinessCommand<TModel> : Command<TModel>, IBusinessTier
+    public class BusinessCommand<TModel> : Command<TModel>, IDomainTier
     {
     }
 }
